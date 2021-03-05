@@ -16,17 +16,18 @@ const GSheet = async (req, res) => {
     });
   await doc.loadInfo();
   var Sheet = await doc.sheetsByIndex[1];
-  if(!Sheet) {
-      Sheet = await doc.addSheet({title: "Guru.com"})
+  if (!Sheet) {
+    Sheet = await doc.addSheet({ title: "Guru.com" })
+    uSheet = await doc.addSheet({ title: "Upwork.com" })
   }
   var Sheet = await doc.sheetsByIndex[1];
   const firstRow = await Sheet.setHeaderRow(['TimeStamp', 'Job_Id', 'Job_Title', 'Job_Description', 'Budget', 'Skills', 'Job_link'])
   var d = new Date()
   var date = d.toLocaleString()
   console.log(req.body.data[0])
-const rows = await Sheet.addRows(req.body.data)
-const brow = await Sheet.addRow({TimeStamp: '--------'})
-const row = await Sheet.getRows()
-res.json({ success: true })
+  const rows = await Sheet.addRows(req.body.data)
+  const brow = await Sheet.addRow({ TimeStamp: '--------' })
+  const row = await Sheet.getRows()
+  res.json({ success: true })
 }
 module.exports = GSheet

@@ -17,9 +17,10 @@ const GSheet = async (req, res) => {
   await doc.loadInfo();
   var Sheet = await doc.sheetsByIndex[2];
   if(!Sheet) {
+      gSheet = await doc.addSheet({title: "Guru.com"})
       Sheet = await doc.addSheet({title: "Upwork.com"})
   }
-  var Sheet = await doc.sheetsByIndex[1];
+  var Sheet = await doc.sheetsByIndex[2];
   const firstRow = await Sheet.setHeaderRow(['TimeStamp', 'Job_Title', 'Job_Description', 'Budget', 'Skills', 'Job_link'])
   var d = new Date()
   var date = d.toLocaleString()
